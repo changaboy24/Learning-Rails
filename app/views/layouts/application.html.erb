@@ -15,15 +15,18 @@
 		<div id="columns">
 			<div id="side">
 				<ul>
-					<li><a href="http:www.">Home</a><li>
-					<li><a href="http:www.">FAQ</a><li>
-					<li><a href="http:www.">News</a><li>
-					<li><a href="http:www.">Contact</a><li>
+					<li><a href="http:www.">Home</a></li>
+					<li><a href="http:www.">FAQ</a></li>
+					<li><a href="http:www.">News</a></li>
+					<li><a href="http:www.">Contact</a></li>
 				</ul>
 			</div>
 
 			<div id="main">
 				<%= yield %>
+			</div>
+			<div id="footer">
+				<p>loaded at <%= Time.now.strftime("%Y-%m-%d %H:%M") %></p>
 			</div>
 		</div>
 	</body>
