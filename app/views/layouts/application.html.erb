@@ -27,6 +27,9 @@
 			</div>
 			<div id="footer">
 				<p>loaded at <%= Time.now.strftime("%Y-%m-%d %H:%M") %></p>
+				<% if session[:counter]>5 %>
+					<p>indexed <%= pluralize(session[:counter],'time')%></p>
+				<% end %>
 			</div>
 		</div>
 	</body>

@@ -40,12 +40,15 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(params[:line_item])
+    @cart = current_cart #method implemented in application_controller, grabs current cart or makes new cart if none
+    product = Product.find(params[:product_id])
+    @line_item = @cart.line_items.build(product: product)
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
         format.json { render json: @line_item, status: :created, location: @line_item }
+        session[:counter] = 0
       else
         format.html { render action: "new" }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
@@ -60,7 +63,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.update_attributes(params[:line_item])
-        format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
+        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
