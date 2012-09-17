@@ -14,11 +14,15 @@
 
 		<div id="columns">
 			<div id="side">
+				<div id="cart">
+					<%= render @cart %>
+				</div>
+
 				<ul>
-					<li><a href="http:www.">Home</a></li>
-					<li><a href="http:www.">FAQ</a></li>
-					<li><a href="http:www.">News</a></li>
-					<li><a href="http:www.">Contact</a></li>
+					<li><a href="http:www...">Home</a></li>
+					<li><a href="http:www.../faq">FAQ</a></li>
+					<li><a href="http:www...news">News</a></li>
+					<li><a href="http:www...contact">Contact</a></li>
 				</ul>
 			</div>
 
@@ -26,7 +30,7 @@
 				<%= yield %>
 			</div>
 			<div id="footer">
-				<p>loaded at <%= Time.now.strftime("%Y-%m-%d %H:%M") %></p>
+				<p>loaded at <%= Time.now.strftime("%Y-%m-%d %H:%M") %></p> 
 				<% if session[:counter]>5 %>
 					<p>indexed <%= pluralize(session[:counter],'time')%></p>
 				<% end %>

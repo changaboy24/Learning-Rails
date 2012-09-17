@@ -43,10 +43,12 @@ class LineItemsController < ApplicationController
     @cart = current_cart #method implemented in application_controller, grabs current cart or makes new cart if none
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
+    @line_item.product = product
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart}
+        format.html { redirect_to store_url}
+        format.js
         format.json { render json: @line_item, status: :created, location: @line_item }
         session[:counter] = 0
       else
@@ -79,7 +81,7 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to current_cart }
+      format.html { redirect_to current_cart, :notice => 'Item has been removed from your cart' }
       format.json { head :no_content }
     end
   end
